@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+    Opinie o produkcie
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6 p-3 bg-success text-white">
+                <input class="form-control" type="text" placeholder="ID produktu" aria-label="default input example">
+            </div>
+        </div>
+    </div> -->
+    <table class="table table-dark table-striped table-bordered border-secondary">
+        <thead>
+          <tr>
+            <th scope="col">Autor</th>
+            <th scope="col">Rekomendacja</th>
+            <th scope="col">Ocena</th>
+            <th scope="col">Treść opinii</th>
+            <th scope="col">Zalety</th>
+            <th scope="col">Wady</th>
+            <th scope="col">Data wystawienia opinii</th>
+            <th scope="col">Data zakupu</th>
+            <th scope="col">Opinia przydatna</th>
+            <th scope="col">Opinia nieprzydatna</th>
+            <th scope="col">ID opinii</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for value in data %}
+          <tr>
+            <td>{{ value.author }}</td>
+            <td>{{ value.recommandation }}</td>
+            <td>{{ value.rating }}</td>
+            <td>{{ value.content }}</td>
+            <td>{{ value.pros }}</td>
+            <td>{{ value.cons }}</td>
+            <td>{{ value.opinion_date }}</td>
+            <td>{{ value.purchase_date }}</td>
+            <td>{{ value.likes }}</td>
+            <td>{{ value.dislikes }}</td>
+            <td>{{ value.opinion_id }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}
