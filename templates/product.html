@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Produkt {{ product_id }}{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Opinie o produkcie {{ product_id }}</h1>
+    <form method="post">
+        <div class="mb-3">
+            <label for="column" class="form-label">Kolumna</label>
+            <select class="form-select" id="column" name="column">
+                {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="filter" class="form-label">Filtr</label>
+            <input type="text" class="form-control" id="filter" name="filter">
+        </div>
+        <button type="submit" class="btn btn-primary">Filtruj</button>
+    </form>
+    <table class="table table-dark table-striped mt-3">
+        <thead>
+            <tr>
+                <th><a href="{{ url_for('product_page', product_id=product_id, sort='author') }}">Autor</a></th>
+                <th><a href="{{ url_for('product_page', product_id=product_id, sort='recommandation') }}">Rekomendacja</a></th>
+                <th><a href="{{ url_for('product_page', product_id=product_id, sort='rating') }}">Ocena</a></th>
+                <th>Treść</th>
+                <th>Zalety</th>
+                <th>Wady</th>
+                <th><a href="{{ url_for('product_page', product_id=product_id, sort='opinion_date') }}">Data opinii</a></th>
+                <th><a href="{{ url_for('product_page', product_id=product_id, sort='purchase_date') }}">Data zakupu</a></th>
+                <th><a href="{{ url_for('product_page', product_id=product_id, sort='likes') }}">Polubienia</a></th>
+                <th><a href="{{ url_for('product_page', product_id=product_id, sort='dislikes') }}">Niepolubienia</a></th>
+                <th><a href="{{ url_for('product_page', product_id=product_id, sort='opinion_id') }}">ID opinii</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for opinion in opinions %}
+            <tr>
+                <td>{{ opinion.author }}</td>
+                <td>{{ opinion.recommandation }}</td>
+                <td>{{ opinion.rating }}</td>
+                <td>{{ opinion.content }}</td>
+                <td>{{ opinion.pros }}</td>
+                <td>{{ opinion.cons }}</td>
+                <td>{{ opinion.opinion_date }}</td>
+                <td>{{ opinion.purchase_date }}</td>
+                <td>{{ opinion.likes }}</td>
+                <td>{{ opinion.dislikes }}</td>
+                <td>{{ opinion.opinion_id }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('download_file', product_id=product_id, file_format='csv') }}" class="btn btn-primary">Pobierz CSV</a>
+    <a href="{{ url_for('download_file', product_id=product_id, file_format='xlsx') }}" class="btn btn-primary">Pobierz XLSX</a>
+    <a href="{{ url_for('download_file', product_id=product_id, file_format='json') }}" class="btn btn-primary">Pobierz JSON</a>
+    <a href="{{ url_for('product_charts_page', product_id=product_id) }}" class="btn btn-secondary">Zobacz wykresy</a>
+</div>
+{% endblock %}

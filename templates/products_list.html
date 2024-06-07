@@ -4,5 +4,35 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="container">
+    <h1>Lista produktów</h1>
+    <table class="table table-dark table-striped table-bordered border-secondary">
+        <thead>
+            <tr>
+                <th>Nazwa Produktu</th>
+                <th>Liczba opinii</th>
+                <th>Liczba wad</th>
+                <th>Liczba zalet</th>
+                <th>Średnia ocena</th>
+                <th>Pobierz opinie</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products_data %}
+                <tr>
+                    <td><a href="{{ url_for('product_page', product_id=product.product_id) }}">{{ product.product_id }}</a></td>
+                    <td>{{ product.num_opinions }}</td>
+                    <td>{{ product.num_pros }}</td>
+                    <td>{{ product.num_cons }}</td>
+                    <td>{{ product.avg_rating }}</td>
+                    <td>
+                        <a href="{{ product.csv_link }}" class="btn btn-primary btn-sm">CSV</a>
+                        <a href="{{ product.xlsx_link }}" class="btn btn-primary btn-sm">XLSX</a>
+                        <a href="{{ product.json_link }}" class="btn btn-primary btn-sm">JSON</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

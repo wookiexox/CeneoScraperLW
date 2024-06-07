@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Wykresy Produktu {{ product_id }}{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Wykresy Produktu {{ product_id }}</h1>
+    <img src="data:image/png;base64,{{ recommendation_chart }}" alt="Udział poszczególnych rekomendacji" class="img-fluid">
+    <img src="data:image/png;base64,{{ rating_chart }}" alt="Liczba opinii z poszczególnymi liczbami gwiazdek" class="img-fluid">
+    <a href="{{ url_for('product_page', product_id=product_id) }}" class="btn btn-secondary mt-3">Powrót do produktu</a>
+</div>
+{% endblock %}

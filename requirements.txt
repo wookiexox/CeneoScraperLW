@@ -16,7 +16,9 @@ jedi==0.19.1
 jupyter_client==8.6.1
 jupyter_core==5.7.2
 matplotlib-inline==0.1.7
+matplotlib
 nest-asyncio==1.6.0
+openpyxl
 packaging==24.0
 pandas
 parso==0.8.4
@@ -37,3 +39,4 @@ traitlets==5.14.3
 typing_extensions==4.11.0
 urllib3==2.2.1
 wcwidth==0.2.13
+xlsxwriter
