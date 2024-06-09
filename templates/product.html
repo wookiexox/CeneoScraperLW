@@ -3,8 +3,12 @@
 {% block content %}
 <div class="container mt-5">
     <h1>Opinie o produkcie {{ product_id }}</h1>
+    <a href="{{ url_for('download_file', product_id=product_id, file_format='csv') }}" class="btn btn-primary">Pobierz CSV</a>
+    <a href="{{ url_for('download_file', product_id=product_id, file_format='xlsx') }}" class="btn btn-primary">Pobierz XLSX</a>
+    <a href="{{ url_for('download_file', product_id=product_id, file_format='json') }}" class="btn btn-primary">Pobierz JSON</a>
+    <a href="{{ url_for('product_charts_page', product_id=product_id) }}" class="btn btn-success">Zobacz wykresy</a>
     <form method="post">
-        <div class="mb-3">
+        <div class="col-md-3">
             <label for="column" class="form-label">Kolumna</label>
             <select class="form-select" id="column" name="column">
                 {% for column in columns %}
@@ -12,7 +16,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class="mb-3">
+        <div class="col-md-3">
             <label for="filter" class="form-label">Filtr</label>
             <input type="text" class="form-control" id="filter" name="filter">
         </div>
@@ -52,9 +56,5 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="{{ url_for('download_file', product_id=product_id, file_format='csv') }}" class="btn btn-primary">Pobierz CSV</a>
-    <a href="{{ url_for('download_file', product_id=product_id, file_format='xlsx') }}" class="btn btn-primary">Pobierz XLSX</a>
-    <a href="{{ url_for('download_file', product_id=product_id, file_format='json') }}" class="btn btn-primary">Pobierz JSON</a>
-    <a href="{{ url_for('product_charts_page', product_id=product_id) }}" class="btn btn-secondary">Zobacz wykresy</a>
 </div>
 {% endblock %}
